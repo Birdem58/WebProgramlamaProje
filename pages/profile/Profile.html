@@ -3,16 +3,37 @@
 <head>
   
   <link rel="stylesheet" type="text/css" href="app.css">
+  <script src="editprofile.js"></script>
  <title>Profile</title>
 </head>
 <body>
-    <div class="profile">
-        <img src="pfp.png" alt="Your Name">
-        <h2>About Me:</h2>
-        <p>Hello, and welcome to my blog! My name is <strong>Your Name</strong>, and I'm passionate about <strong>Your Topic</strong>. I started this blog to share my knowledge and experiences with others who are interested in <strong>Your Topic</strong>.</p>
-        <p>I have [insert relevant information about your background, experience, or qualifications here].</p>
-        <p>Thanks for stopping by my blog, and I hope you find the content here useful and informative!</p>
-      </div>
+  <div class="profile-card">
+    <div class="card-header">
+      <img src="pfp.png" alt="profile-picture" class="profile-picture">
+      <h2 class="name">John Doe</h2>
+      <p class="job-title">Software Developer</p>
+      
+    </div>
+    <div class="card-body">
+      <p class="description">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mattis ex vel est viverra luctus. Nulla faucibus, quam eu dignissim facilisis, massa magna consequat justo, eu maximus arcu elit vitae mauris.
+      </p>
+      <button class="edit-profile-btn" onclick="showEditForm()">Edit Profile</button>
+      <form class="edit-profile-form" style="display:none;">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br><br>
+        <label for="job-title">Job Title:</label>
+        <input type="text" id="job-title" name="job-title"><br><br>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description"></textarea><br><br>
+        <input type="button" value="Save" onclick="saveProfile()">
+        <input type="button" value="Cancel" onclick="hideEditForm()">
+      </form>
+    </div>
+  </div>
+  
+  
+   
       
 </body>
 </html>
