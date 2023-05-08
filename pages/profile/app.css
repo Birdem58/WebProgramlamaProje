@@ -1,4 +1,3 @@
-
 body {
   /* background: linear-gradient(to right,  #ffd166,#06d6a0,  #ef476f);
   */
@@ -7,7 +6,7 @@ body {
   padding: 0;
   box-sizing: border-box;
   min-height: 100vh;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   background-color: #ce330cae;
 }
 
@@ -25,7 +24,7 @@ a {
 
 .header__wrapper header {
   width: 100%;
-  background: url("Chainsaw-Man-TatsukiFujimoto-4k-anime-anime-girls-MAPPA-2185907-wallhere.com.jpg") no-repeat 50% 20% / cover;
+  background: url("../../img/placeholder.png") no-repeat 50% 20% / cover;
   min-height: calc(100px + 15vw);
 }
 
@@ -146,14 +145,14 @@ a {
   opacity: 0.8;
 }
 .header__wrapper .cols__container .right__col .photos {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  display: flex;
+  flex-direction: column;
   gap: 20px;
 }
 .header__wrapper .cols__container .right__col .photos img {
   max-width: 100%;
   display: block;
-  height: 100%;
+  height: 30%;
   object-fit: cover;
 }
 
