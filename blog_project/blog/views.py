@@ -8,9 +8,9 @@ from .models import Post
 def main(request):
     trendingPosts = Post.objects.values('title', 'slug').annotate(
         likecount=Count('likes')).order_by('-likecount')[:3]
-    posts = Post.objects.all().values('author', 'title', 'body')
+    posts = Post.objects.all()
     template = loader.get_template('main.html')
-    print(posts)
+    #print(posts[0].author)
     context = {
         'posts': posts,
         'trendingPosts': trendingPosts,

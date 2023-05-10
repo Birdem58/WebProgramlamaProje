@@ -1,8 +1,8 @@
 {% load static %}
 <div class="blog-box">
   <div class="blog-box-h">
-    <img src="" alt="Profile Photo" />
-    <span>{{ author.username }}</span>
+    <img src="{{author.profile.photo}}" alt="Profile Photo" />
+    <span>{{ author.first_name}} {{ author.last_name }}</span>
   </div>
   <div class="blog-box-b">
     <div>

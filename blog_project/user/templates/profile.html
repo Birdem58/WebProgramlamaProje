@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="{% static 'app.css' %}" />
+  <link rel="stylesheet" href="{% static 'color.css' %}" />
+ <title>Profile Page</title>
+</head>
+<body>
+  <div class="header__wrapper">
+    
+    <div class="cols__container">
+      <div class="left__col">
+        <div class="img__container">
+          <img src="{% static 'avatar.jpg' %}" alt="Anna Smith" />
+        </div>
+        <h2>Birdem Celep</h2>
+        <p>Writer</p>
+        <p>thebestofrest1132@gmail.com</p>
+
+        <ul class="about">
+          <li><span>12</span>Blog</li>
+          <li><span>69</span>Liked</li>
+        </ul>
+        <div class="content">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, voluptate eaque. Iure iusto eum repellendus, suscipit cum autem, perferendis, cumque tenetur perspiciatis ratione aliquid? Maiores sit nobis facilis rerum autem?
+          </p>     
+        </div>
+      </div>
+      <div class="right__col">
+        <nav>
+          <ul>
+            <li><a href="#">Written Blogs</a></li>
+            <li><a href="#">Liked Blogs</a></li>
+          </ul>
+        </nav>
+
+        <div class="photos">
+          <img src="{% static 'placeholder.png' %}" alt="Photo" />
+          <img src="{% static 'placeholder.png' %}" alt="Photo" />
+          <img src="{% static 'placeholder.png' %}" alt="Photo" />
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+</body>
+</html>
