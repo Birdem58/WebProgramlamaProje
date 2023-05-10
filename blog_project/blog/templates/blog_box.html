@@ -1,0 +1,14 @@
+{% load static %}
+<div class="blog-box">
+  <div class="blog-box-h">
+    <img src="" alt="Profile Photo" />
+    <span>{{ author.username }}</span>
+  </div>
+  <div class="blog-box-b">
+    <div>
+      <h2>{{ title }}</h2>
+      <p>{{ body|slice:":128" }}...</p>
+    </div>
+    <img src="{% static 'home_img.png' %}" alt="Blog Photo" />
+  </div>
+</div>

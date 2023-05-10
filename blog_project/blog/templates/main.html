@@ -2,8 +2,10 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" href="{% static 'home.css' %}" />
+<link rel="stylesheet" href="{% static 'main.css' %}" />
 <link rel="stylesheet" href="{% static 'color.css' %}" />
+<link rel="stylesheet" href="{% static 'blog.css' %}" />
+
 <title>Blogger - The best blogs in the galaxy</title>
 {% endblock %} {% block content %}
 <nav class="border-bt" id="navbar">
@@ -26,41 +28,18 @@
 </section>
 <h2 style="text-align: center">Trending Blogs</h2>
 <section class="border-bt" id="trendings">
-  <div style="background-color: cadetblue">
+  {% for x in trendingPosts %}
+  <div>
     <span>1</span>
-    <p>Deneme</p>
+    <h2>{{x.title}}</h2>
   </div>
-  <div style="background-color: cadetblue">
-    <span>1</span>
-    <p>Deneme</p>
-  </div>
-  <div style="background-color: cadetblue">
-    <span>1</span>
-    <p>Deneme</p>
-  </div>
-  <div style="background-color: cadetblue">
-    <span>1</span>
-    <p>Deneme</p>
-  </div>
+  {% endfor %}
 </section>
 <h2 style="text-align: center">Last Posted Blogs</h2>
-<section id="lasts">
-  <div style="background-color: cadetblue">
-    <span>1</span>
-    <p>Deneme</p>
-  </div>
-  <div style="background-color: cadetblue">
-    <span>1</span>
-    <p>Deneme</p>
-  </div>
-  <div style="background-color: cadetblue">
-    <span>1</span>
-    <p>Deneme</p>
-  </div>
-  <div style="background-color: cadetblue">
-    <span>1</span>
-    <p>Deneme</p>
-  </div>
+<section id="last-posted">
+  {% for x in posts %} 
+    {% include 'blog_box.html' with author=x.author title=x.title body=x.body %} 
+  {% endfor %}
 </section>
-<footer><span>Project for Web Programming @220229066.</span></footer>
+<footer><span>Blog Website Project for Web Programming</span></footer>
 {% endblock %}

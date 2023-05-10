@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
 body {
@@ -85,7 +85,7 @@ body {
 }
 
 #trendings {
-  min-height: 40vh;
+  min-height: 20vh;
   background-color: var(--bg-primary);
   overflow: hidden;
   display: grid;
@@ -94,10 +94,28 @@ body {
   grid-template-columns: repeat(3, 1fr);
 }
 
-#lasts {
+#trendings div {
+  display: flex;
+  align-items: center;
+  border: 2px dotted black;
+  border-radius: 8px;
+  gap: 0.4rem;
+  padding: 0.4rem;
+}
+
+#trendings div span {
+  padding: 0.4rem;
+  font-size: 2rem;
+  border-right: 2px solid black;
+  color: var(--pink);
+}
+
+#last-posted {
   background-color: var(--bg-primary);
   display: flex;
   flex-direction: column;
+  justify-items: flex-start;
+  align-items: center;
   gap: 0.8rem;
   padding: 2rem;
   padding-left: 8rem;
@@ -110,7 +128,7 @@ footer {
   text-align: center;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
   body {
     font-size: 12px;
   }
@@ -127,5 +145,14 @@ footer {
 
   #hero img {
     max-height: 12rem;
+  }
+
+  #trendings {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  #last-posted {
+    gap: 0.3rem;
+    padding: 0.4rem;
   }
 }
