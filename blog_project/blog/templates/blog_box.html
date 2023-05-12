@@ -9,6 +9,10 @@
       <h2>{{ title }}</h2>
       <p>{{ body|slice:":128" }}...</p>
     </div>
-    <img src="{% static 'home_img.png' %}" alt="Blog Photo" />
+    {% if photo %}
+      <img src="{{photo}}" alt="Blog Photo" />
+    {% else %}
+      <img src="{% static 'placeholder.png' %}" alt="Blog Photo" />
+    {% endif %} 
   </div>
 </div>

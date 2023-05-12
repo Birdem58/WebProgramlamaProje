@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.db.models import Count
 from django.template import loader
 from .models import Post
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def main(request):
@@ -10,9 +11,20 @@ def main(request):
         likecount=Count('likes')).order_by('-likecount')[:3]
     posts = Post.objects.all()
     template = loader.get_template('main.html')
-    #print(posts[0].author)
+
+    page_num = request.GET.get('page', 1)
+    paginator = Paginator(posts , 3) 
+    try:
+        page_obj = paginator.page(page_num)
+    except PageNotAnInteger:
+        # if page is not an integer, deliver the first page
+        page_obj = paginator.page(1)
+    except EmptyPage:
+        # if the page is out of range, deliver the last page
+        page_obj = paginator.page(paginator.num_pages)
+
     context = {
-        'posts': posts,
+        'page_obj': page_obj,
         'trendingPosts': trendingPosts,
     }
     return HttpResponse(template.render(context, request))

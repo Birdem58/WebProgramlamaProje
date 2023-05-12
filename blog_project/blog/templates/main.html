@@ -27,8 +27,21 @@
 </section>
 <h2 style="text-align: center">Last Posted Blogs</h2>
 <section id="last-posted">
-  {% for x in posts %} 
-    {% include 'blog_box.html' with author=x.author title=x.title body=x.body %} 
+  {% for x in page_obj %} 
+    {% include 'blog_box.html' with author=x.author title=x.title body=x.body photo=x.photo %} 
   {% endfor %}
 </section>
+<center>
+  <span>
+    {% if page_obj.has_previous %}
+      <a class="paginate" href="?page={{ page_obj.previous_page_number }}#last-posted">Previous</a>
+    {% endif %}
+    <span>
+      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+    </span>
+    {% if page_obj.has_next %}
+      <a class="paginate" href="?page={{ page_obj.next_page_number }}#last-posted">Next</a>
+    {% endif %}
+  </span>
+</center>
 {% endblock %}

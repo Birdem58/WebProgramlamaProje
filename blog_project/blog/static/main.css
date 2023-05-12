@@ -104,6 +104,15 @@ footer {
   text-align: center;
 }
 
+.paginate {
+  color: whitesmoke !important;
+  background-color: var(--emerald);
+  padding: 0.6rem;
+  margin-left: 0.8rem;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
 @media only screen and (max-width: 700px) {
   body {
     font-size: 12px;
