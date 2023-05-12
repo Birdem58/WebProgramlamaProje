@@ -7,3 +7,10 @@ from django.template import loader
 def profile(request):
     template = loader.get_template('profile.html')
     return HttpResponse(template.render())
+
+def login(request):
+    template = loader.get_template('login_signup.html')
+    context = {
+        'mode' : 'login'
+    }
+    return HttpResponse(template.render(context, request))
