@@ -14,12 +14,14 @@
 
 .blog-box h2 {
   font-weight: 700;
+  margin-top: 0;
 }
 
 .blog-box-h {
   background-color: white;
   display: flex;
   gap: 0.4rem;
+  padding: 0.2rem;
 }
 
 .blog-box-h img {

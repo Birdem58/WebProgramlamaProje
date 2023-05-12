@@ -19,4 +19,5 @@ def main(request):
 
 
 def blog(request):
-    return HttpResponse("blog")
+    template = loader.get_template('blog_page.html')
+    return HttpResponse(template.render())
