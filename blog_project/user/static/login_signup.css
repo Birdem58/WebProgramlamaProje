@@ -82,7 +82,7 @@ body {
   margin-top: 30px;
 }
 
-.input-field input, .input-field button {
+.input-field input {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -156,7 +156,7 @@ body {
   margin-top: 35px;
 }
 
-.form .button button,.form .button input {
+.form .button input {
   border: none;
   color: white;
   font-size: 17px;
