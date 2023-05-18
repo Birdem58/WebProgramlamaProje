@@ -1,6 +1,5 @@
 {% extends 'master.html' %} {% load static %} {% block head %}
 <link rel="stylesheet" href="{% static 'main.css' %}" />
-<link rel="stylesheet" href="{% static 'color.css' %}" />
 <link rel="stylesheet" href="{% static 'blog_box.css' %}" />
 
 <title>Blogger - The best blogs in the galaxy</title>
@@ -19,16 +18,18 @@
 <h2 style="text-align: center">Trending Blogs</h2>
 <section class="border-bt" id="trendings">
     {% for x in trendingPosts %}
-      <div>
-        <span>*</span>
-        <h2>{{x.title}}</h2>
-      </div>
+      <a href="blog/{{ x.slug }}">
+        <div>
+          <span>*</span>
+          <h2>{{x.title}}</h2>
+        </div>
+      </a>
     {% endfor %}
 </section>
 <h2 style="text-align: center">Last Posted Blogs</h2>
 <section id="last-posted">
   {% for x in page_obj %} 
-    {% include 'blog_box.html' with author=x.author title=x.title body=x.body photo=x.photo %} 
+    {% include 'blog_box.html' with post=x %} 
   {% endfor %}
 </section>
 <center>
@@ -44,4 +45,5 @@
     {% endif %}
   </span>
 </center>
+<footer><span>Blog Website Project for Web Programming</span></footer>
 {% endblock %}

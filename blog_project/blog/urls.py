@@ -1,19 +1,15 @@
 from django.urls import path
 from . import views
-from .views import AddPostView
-
-
-
+from .views import CreatePostView, PostDetailView 
 
 urlpatterns = [
     path('', views.main, name='main'),
-    # path('blog/', views.blog, name='main'),
-    path("homeblog", views.homeBlog, name="home"),
-    # path("blogs", views.blogs, name = "blogs"),
-    path('blogs', AddPostView.as_view(),name='blogs'),
-    # path("blogs/<int:id>", views.blogdetails, name = "blogdetails"),
+    path("blog/", views.blog_list, name="blog_list"),
+    path('blog/create', CreatePostView.as_view(),name='blog_create'),
+    path('blog/edit/<slug:slug>', views.edit_post, name='post-edit'),
+    path("blog/<slug:slug>", PostDetailView.as_view(), name="post_detail"),
+    path('blogpost-like/<slug:slug>', views.BlogPostLike, name="blogpost_like")
 ]
-
 
 
 

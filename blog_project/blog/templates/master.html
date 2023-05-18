@@ -5,12 +5,23 @@
     <meta charset="UTF-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'color.css' %}" />
     <link rel="stylesheet" href="{% static 'navbar.css' %}" />
+    <script>
+      *{
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif !important;
+      }
+      
+      #blog-list > a {
+        text-decoration: none;
+        color: black;
+      }
+      
+    </script>
     {% block head %}{% endblock %}
   </head>
   <body>
     {% include 'navbar.html' %} 
     {% block content %} {% endblock %}
-    <footer><span>Blog Website Project for Web Programming</span></footer>
   </body>
 </html>

@@ -18,17 +18,33 @@
     color: black;
 }
 
+#link-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
 #link-container a {
     text-decoration: none;
     color: black;
     font-size: 1.2rem !important;
+}
+
+#link-container a:not(:last-child) {
+    border-left: 2px solid black;
+    padding-left: 2px;
+}
+
+#link-container a:hover {
+    border-bottom: 2px solid black;
 }
   
 #signup {
     color: whitesmoke !important;
     background-color: var(--pink);
     padding: 0.6rem;
-    margin-left: 0.8rem;
     border-radius: 8px;
 }
 

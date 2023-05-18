@@ -1,11 +1,15 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render,get_object_or_404,redirect
+from django.http import HttpResponse,HttpResponseRedirect
 from django.db.models import Count
+from django.urls import reverse
 from django.template import loader
 from .models import Post
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.views.generic import CreateView
-
+from django.views.generic import CreateView, DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.utils.text import slugify
+from .forms import PostForm
+from django.contrib import messages
 
 def main(request):
     trendingPosts = Post.objects.values('title', 'slug').annotate(
@@ -31,74 +35,63 @@ def main(request):
     return HttpResponse(template.render(context, request))
 
 
-
-kategori_liste = ["teknoloji","tarih","bilimkurgu","uzay"]
-# baslik_liste = [
-#     {
-#         "id": 1,
-#         "baslik_adi":"blog 1",
-#         "aciklama":"blog 1 aciklama",
-#         "resim": "b1.jpg",
-#         "anasayfa":True,
-#     },
-#     {
-#         "id": 2,
-#         "baslik_adi":"blog 2",
-#         "aciklama":"blog 2 aciklama",
-#         "resim": "b2.jpg",
-#         "anasayfa":True,
-#     },
-#     {
-#         "id": 3,
-#         "baslik_adi":"blog 3",
-#         "aciklama":"blog 3 aciklama",
-#         "resim": "b3.jpg",
-#         "anasayfa":False,
-#     },
-#     {
-#         "id": 4,
-#         "baslik_adi":"blog 4",
-#         "aciklama":"blog 4 aciklama",
-#         "resim": "b4.jpg",
-#         "anasayfa":False,
-#     },
-    
-    
-#     ]
-
-def blog(request):
-    template = loader.get_template('blog_page.html')
-    return HttpResponse(template.render())
-
-
-def homeBlog(request):
+def blog_list(request):
     data = {
-        "kategoriler":kategori_liste,
         "basliklar":Post.objects.all(),
     }
-    return render(request, "blog.html",data)
+    return render(request, "blog_list.html",data)
 
-
-def blogs(request):
-    
-        
-    data = {
-        
-        "basliklar":Post.objects.all(),
-    }
-    return render(request,"blogs.html",data)
-
-
-
-# def blogdetails(request,id):
-#     data = {
-#         "id":id
-#     }
-#     return render(request,"blogdetails.html",data)
-
-
-class AddPostView(CreateView):
+class CreatePostView(LoginRequiredMixin, CreateView):
     model = Post
-    template_name = "blogs.html"
-    fields = '__all__'
+    fields = ['title','photo','body','status'] 
+    template_name = 'blog_create.html'
 
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        form.instance.slug = slugify(form.instance.title)
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse("blog_list")
+
+class PostDetailView(DetailView):
+    model = Post
+    template_name = "post_detail.html"
+
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+
+        likes_connected = get_object_or_404(Post, slug=self.kwargs['slug'])
+        print(likes_connected)
+        liked = False
+        if likes_connected.likes.filter(id=self.request.user.id).exists():
+            liked = True
+        data['number_of_likes'] = likes_connected.number_of_likes()
+        data['post_is_liked'] = liked
+        return data
+
+def edit_post(request, slug):
+    post = get_object_or_404(Post, slug=slug)
+
+    if request.method == 'GET':
+        context = {'form': PostForm(instance=post), 'slug': slug}
+        return render(request,'blog_edit.html',context)
+    
+    elif request.method == 'POST':
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'The post has been updated successfully.')
+            return redirect("blog_list")
+        else:
+            messages.error(request, 'Please correct the following errors:')
+            return render(request,'blog_edit.html',{'form':form})
+
+def BlogPostLike(request, slug):
+    post = get_object_or_404(Post, slug=request.POST.get('blogpost_id'))
+    if post.likes.filter(id=request.user.id).exists():
+        post.likes.remove(request.user)
+    else:
+        post.likes.add(request.user)
+
+    return HttpResponseRedirect(reverse('post_detail', args=[str(slug)]))

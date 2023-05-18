@@ -1,11 +1,16 @@
 <nav id="navbar">
   <a href="/"><h1>Blogger</h1></a>
-  <a href="{% url 'home' %}">Blog</a>
-  
+
   <div id="link-container">
-    
-    <a href="login/">Log In</a>
-    <a id="signup" href="login/">Sign Up</a>
-    
+    {% if user.is_authenticated %}
+      <span style="font-size: 1.4rem;">Hi {{ user.first_name }}!</span>
+      <a href="{% url 'blog_create' %}">Write Blog</a>
+      <a href="{% url 'blog_list' %}">Blogs</a>
+      <a id="signup" href="/accounts/logout/">Log Out</a>
+    {% else %}
+      <a href="{% url 'blog_list' %}">Blogs</a>
+      <a href="/accounts/login/">Log In</a>
+      <a id="signup" href="/accounts/signup/">Sign Up</a>
+    {% endif %}
   </div>
 </nav>

@@ -5,7 +5,6 @@ from django.urls import reverse
 
 # Create your models here.
 
-
 class Post(models.Model):
     class Status(models.TextChoices):
         DRAFT = 'DF', 'Draft'
@@ -14,7 +13,7 @@ class Post(models.Model):
     title = models.CharField(max_length=250)
     photo = models.ImageField(upload_to='blog_photos/%Y/%m/%d/',
                               blank=True)
-    slug = models.SlugField(max_length=250)
+    slug = models.SlugField(max_length=250,null=True,unique=True)
     author = models.ForeignKey(User,
                                on_delete=models.CASCADE,
                                blank=False
@@ -37,8 +36,10 @@ class Post(models.Model):
         return self.title
     
     def get_absolute_url(self):
-        return reverse("home")
+        return reverse("post_detail", kwargs={"slug": self.slug}) 
     
+    def number_of_likes(self):
+        return self.likes.count()
     
 
 
