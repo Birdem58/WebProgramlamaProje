@@ -5,6 +5,7 @@
   <link rel="stylesheet" href="{% static 'app.css' %}" />
   <link rel="stylesheet" href="{% static 'color.css' %}" />
   <link rel="stylesheet" href="{% static 'blog_box.css' %}" />
+  
  <title>Profile Page</title>
 </head>
 <body>
@@ -32,29 +33,33 @@
           </p>     
         </div>
         {% if user.is_authenticated %}
-        <a href="{% url 'profile-edit' %}"><button">Edit</button></a>
+        <a href="{% url 'profile-edit' %}"><button class="edit-profile-button" >Edit Profile</button></a>
         {% endif %}
       </div>
       <div class="right__col">
         <nav>
           <ul>
-            <li><a href="#">Written Blogs</a></li>
-            <li><a href="#">Liked Blogs</a></li>
+            <li><a href="#"  onclick="showWritten()">Written Blogs</a></li>
+            <li><a href="#"  onclick="showliked()">Liked Blogs</a></li>
+            
+           
           </ul>
         </nav>
+        <div id="liked-posts" class="post-container">
+          {% for x in likedPosts %} 
+          {% include 'blog_box.html' with post=x %} 
+          {% endfor %}
+        </div> 
         <div id="written-posts" class="post-container">
           {% for x in writtenPosts %} 
           {% include 'blog_box.html' with post=x %} 
           {% endfor %}
         </div>
-        {% comment %} <div id="liked-posts" class="post-container">
-          {% for x in likedPosts %} 
-          {% include 'blog_box.html' with post=x %} 
-          {% endfor %}
-        </div> {% endcomment %}
+        
       </div>
     </div>
   </div>
+  <script src="{% static 'hide.js' %}"></script>
 </body>
 </html>
 </body>
