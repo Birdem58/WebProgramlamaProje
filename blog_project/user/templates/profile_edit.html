@@ -30,7 +30,7 @@
     <div id="container">
         <h3>Edit Profile</h3>
         <br>
-        <form method="POST" novalidate>
+        <form method="POST" novalidate enctype="multipart/form-data">
           {% csrf_token %}
           {{ user_form.as_p }}
           {{ profile_form.as_p }}

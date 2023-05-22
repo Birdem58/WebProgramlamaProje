@@ -33,7 +33,6 @@
 }
 
 #link-container a:not(:last-child) {
-    border-left: 2px solid black;
     padding-left: 2px;
 }
 

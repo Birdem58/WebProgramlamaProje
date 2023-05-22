@@ -24,19 +24,26 @@
             flex-direction: column;
             justify-items: flex-start;
             align-items: center;
-            gap: 1rem;
+            gap: 2rem;
             padding: 2rem;
           }
 
           #container p{
             text-align: center;
-            letter-spacing: 0.1rem;
             line-height: 1.4rem;
           }
     </style>
 {% endblock %} {% block content %}
     <div id="container">
         <h1 id="title">{{ object.title }}</h1>
+        <div>
+          {% if object.author.profile.photo %}
+            <img style="border-radius: 50%;" width="32" height="32" src="{{object.author.profile.photo.url}}" alt="User Photo" />
+          {% else %}
+            <img src="{% static 'avatar.jpg' %}" alt="User Photo" />
+          {% endif %} 
+          <span>{{ object.author.first_name}} {{ object.author.last_name }}</span>
+        </div>
         {% if object.photo %}
           <img src="{{object.photo.url}}" width="700" height="278"  alt="Blog Photo" />
         {% else %}
