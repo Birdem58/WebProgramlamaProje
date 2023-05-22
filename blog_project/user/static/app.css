@@ -182,104 +182,13 @@ a {
   }
 }
 
-/*
 
-
- <div class="container">
-    <div class="header">header</div>
-
-    <div class="secim">secim</div>
-    
-    <div class="content">content</div>
-  
-    <div class="profile">
-      <img src="pfp.png" alt="Your Name">
-      <p>profile here</p>
-    </div>
-
-
-
-
-  </div>
-
-
-body{
-  margin: 0;
-  background-color: #ffd166;
-}
-
-.container
-{
-  
-  width: 100vw;
-  height: 100vw;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 50px 100px 100px 1fr 1fr ;
-  gap: 5px;
-  padding: 10px;
-  box-sizing: border-box;
-}
-.container div{
-  padding: 10px;
-  border: 10px solid #06d6a0;
-  border-radius: 5px;
-
-
-}
-.header
-{
-  grid-column: 1/ 3;
-  grid-row: 1 /1 ;
-}
-
-
-
-
-.profile
-{
-  grid-column: 3 / 4 ;
-  grid-row: 1 / 5;
+.post-container {
+  background-color: var(--bg-primary);
   display: flex;
   flex-direction: column;
-  
-  justify-content: start;
+  justify-items: flex-start;
   align-items: center;
-
-
+  gap: 0.8rem;
+  padding: 0.4rem;
 }
-.profile img {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  margin-bottom: 20px;
-  
-}
-
-
-
-.secim
-{
-  grid-column: 1/ 3;
-  grid-row: 2/2;
-}
-
-
-.content
-{
- 
-  grid-column:1 / 3 ;
-  grid-row: 3/5;
-}
-
-
-
-
-
-  :root {
-    --sunglow: #ffd166;
-    --pink: #ef476f;
-    --emerald: #06d6a0;
-    --bg-primary: #fffcf9;
-  }
-  */

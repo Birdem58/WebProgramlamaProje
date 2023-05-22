@@ -1,7 +1,7 @@
 {% load static %}
 <div class="blog-box">
   <div class="blog-box-h">
-    {% if ppost.author.profile.photo %}
+    {% if post.author.profile.photo %}
       <img src="{{post.author.profile.photo}}" alt="Blog Photo" />
     {% else %}
       <img src="{% static 'avatar.jpg' %}" alt="Blog Photo" />

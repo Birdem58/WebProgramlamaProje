@@ -37,7 +37,7 @@ def main(request):
 
 def blog_list(request):
     data = {
-        "basliklar":Post.objects.all(),
+        "basliklar": Post.objects.all(),
     }
     return render(request, "blog_list.html",data)
 
