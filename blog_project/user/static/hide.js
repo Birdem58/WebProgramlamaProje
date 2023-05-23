@@ -1,10 +1,22 @@
+let liked = document.getElementById("liked-posts")
+let written = document.getElementById("written-posts")
+
+let likedText = document.getElementById("liked-text")
+let writtenText = document.getElementById("written-text")
+
+liked.style.display = "none";
+writtenText.style.borderBottom = "2px solid black";
+
 function showliked() {
-  element = document.getElementById("liked-posts");
-  document.getElementById("written-posts").style.display = "none";
-  element.style.display = "flex";
+  written.style.display = "none";
+  liked.style.display = "flex";
+  writtenText.style.borderBottom = "none";
+  likedText.style.borderBottom = "2px solid black";
 }
 function showWritten() {
-  element = document.getElementById("written-posts");
-  document.getElementById("liked-posts").style.display = "none";
-  element.style.display = "flex";
+  liked.style.display = "none";
+  written.style.display = "flex";
+  likedText.style.borderBottom = "none";
+  writtenText.style.borderBottom = "2px solid black";
 }
+

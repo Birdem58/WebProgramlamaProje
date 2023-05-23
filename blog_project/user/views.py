@@ -27,8 +27,8 @@ def profile(request):
 
 def profile_username(request,username):
     user = User.objects.get(username=username)
-    likedPosts = Post.objects.filter(likes=request.user.id)
-    writtenPosts = Post.objects.filter(author = request.user).order_by('-created')
+    likedPosts = Post.objects.filter(likes=user.id)
+    writtenPosts = Post.objects.filter(author = user).order_by('-created')
     template = loader.get_template('profile.html')
     context = {
         'user': user,

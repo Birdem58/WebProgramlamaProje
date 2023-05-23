@@ -26,11 +26,11 @@ a {
 }
 
 .header__wrapper .cols__container .left__col {
+  position: sticky;
   padding: 25px 20px;
   text-align: center;
   max-width: 350px;
   margin: 0 auto;
-  position: sticky;
 }
 
 .header__wrapper .cols__container .left__col .img__container img {

@@ -41,7 +41,7 @@
           {% if object.author.profile.photo %}
             <img style="border-radius: 50%;" width="32" height="32" src="{{object.author.profile.photo.url}}" alt="User Photo" />
           {% else %}
-            <img src="{% static 'avatar.jpg' %}" width="32" height="32" alt="User Photo" />
+            <img width="32" height="32" style="border-radius: 50%;" src="{% static 'avatar.jpg' %}" alt="User Photo" />
           {% endif %} 
           </a>
           <span>{{ object.author.first_name}} {{ object.author.last_name }}</span>
