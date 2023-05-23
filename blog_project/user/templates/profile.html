@@ -10,12 +10,11 @@
 </head>
 <body>
   <div class="header__wrapper">
-    
     <div class="cols__container">
       <div class="left__col">
         <div class="img__container">
           {% if user.profile.photo %}
-            <img src="{{ user.profile.photo }}" alt="Profile" />
+            <img src="{{ user.profile.photo.url }}" alt="Profile" />
           {% else %}
             <img src="{% static 'avatar.jpg' %}" alt="Profile" />
           {% endif %}
@@ -24,15 +23,15 @@
         <p>{{ user.email }}</p>
 
         <ul class="about">
-          <li><span>12</span>Blog</li>
-          <li><span>69</span>Liked</li>
+          <li><span>{{ writtenPosts|length }}</span>Posts</li>
+          <li><span>{{ likedPosts|length }}</span>Likes</li>
         </ul>
         <div class="content">
           <p>
             {{ user.profile.about_me }}
           </p>     
         </div>
-        {% if user.is_authenticated %}
+        {% if user.is_authenticated and edit %}
         <a href="{% url 'profile-edit' %}"><button class="edit-profile-button" >Edit Profile</button></a>
         {% endif %}
       </div>

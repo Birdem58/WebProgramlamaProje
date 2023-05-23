@@ -36,10 +36,24 @@ def main(request):
 
 
 def blog_list(request):
-    data = {
-        "basliklar": Post.objects.all(),
+    posts = Post.objects.all()
+    template = loader.get_template('blog_list.html')
+
+    page_num = request.GET.get('page', 1)
+    paginator = Paginator(posts , 4) 
+    try:
+        page_obj = paginator.page(page_num)
+    except PageNotAnInteger:
+        # if page is not an integer, deliver the first page
+        page_obj = paginator.page(1)
+    except EmptyPage:
+        # if the page is out of range, deliver the last page
+        page_obj = paginator.page(paginator.num_pages)
+
+    context = {
+        'page_obj': page_obj,
     }
-    return render(request, "blog_list.html",data)
+    return HttpResponse(template.render(context, request))
 
 class CreatePostView(LoginRequiredMixin, CreateView):
     model = Post

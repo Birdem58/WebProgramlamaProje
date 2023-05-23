@@ -37,11 +37,13 @@
     <div id="container">
         <h1 id="title">{{ object.title }}</h1>
         <div>
+          <a href="{% url 'profile-username' username=object.author.username %}">
           {% if object.author.profile.photo %}
             <img style="border-radius: 50%;" width="32" height="32" src="{{object.author.profile.photo.url}}" alt="User Photo" />
           {% else %}
-            <img src="{% static 'avatar.jpg' %}" alt="User Photo" />
+            <img src="{% static 'avatar.jpg' %}" width="32" height="32" alt="User Photo" />
           {% endif %} 
+          </a>
           <span>{{ object.author.first_name}} {{ object.author.last_name }}</span>
         </div>
         {% if object.photo %}

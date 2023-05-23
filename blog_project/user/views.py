@@ -20,7 +20,21 @@ def profile(request):
     context = {
         'user': user,
         'likedPosts': likedPosts,
-        'writtenPosts':writtenPosts
+        'writtenPosts':writtenPosts,
+        'edit': bool(True)
+    }
+    return HttpResponse(template.render(context, request))
+
+def profile_username(request,username):
+    user = User.objects.get(username=username)
+    likedPosts = Post.objects.filter(likes=request.user.id)
+    writtenPosts = Post.objects.filter(author = request.user).order_by('-created')
+    template = loader.get_template('profile.html')
+    context = {
+        'user': user,
+        'likedPosts': likedPosts,
+        'writtenPosts':writtenPosts,
+        'edit': bool(False)
     }
     return HttpResponse(template.render(context, request))
 
