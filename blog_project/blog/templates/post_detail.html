@@ -46,6 +46,9 @@
           </a>
           <span>{{ object.author.first_name}} {{ object.author.last_name }}</span>
         </div>
+        {% if user.is_authenticated and object.author.username|stringformat:'s' == user.username|stringformat:'s' %}
+          <a href="{% url 'post-edit' slug=object.slug %}">Edit Blog</a>
+        {% endif %}
         {% if object.photo %}
           <img src="{{object.photo.url}}" width="700" height="278"  alt="Blog Photo" />
         {% else %}

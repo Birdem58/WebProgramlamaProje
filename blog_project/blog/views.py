@@ -14,7 +14,7 @@ from django.contrib import messages
 def main(request):
     trendingPosts = Post.objects.values('title', 'slug').annotate(
         likecount=Count('likes')).order_by('-likecount')[:3]
-    posts = Post.objects.all()
+    posts = Post.objects.filter(status='PB')
     template = loader.get_template('main.html')
 
     page_num = request.GET.get('page', 1)
